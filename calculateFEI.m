@@ -12,7 +12,7 @@ function [EI, wAmp, wDNF] = calculateFEI(Signal, windowSize, windowOverlap)
 %   Eva Dallares, Satu Palva, Bob Oranje, J. Matias Palva, Huibert D. Mansvelder & Klaus Linkenkaer-Hansen
 %   (*Joint First Author)
 
-%% Input
+%%Input
 % Signal:        amplitude envelope with dimensions (numSamples,numChannels)
 % windowSize:    in samples
 % windowOverlap: is fraction of overlap between windows (0-1)
