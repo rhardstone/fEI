@@ -1,6 +1,6 @@
 function [EI, wAmp, wDNF] = calculateFEI(Signal, windowSize, windowOverlap)
 % Originally created by Richard Hardstone (2020), rhardstone@gmail.com
-% Please note that commercial use of this algorithm is protected by Patent claim (PCT/NL2019/050167) “Method of determining brain activity”; with priority date 16 March 2018
+% Please note that commercial use of this algorithm is protected by Patent claim (PCT/NL2019/050167) â€œMethod of determining brain activityâ€; with priority date 16 March 2018
 % This code is licensed under creative commons license CC-BY-NC https://creativecommons.org/licenses/by-nc/4.0/legalcode.txt
 
 %%
@@ -31,14 +31,14 @@ wDNF = zeros(numChannels,numWindows);
 
 for i_channel = 1:numChannels
     originalAmplitude = Signal(:,i_channel);    
-    signalProfile = cumsum(originalAmplitude - mean(originalAmplitude));            %% Step ii -> iii       
-    w_originalAmplitude = mean(originalAmplitude(allWindowIndex),2);       %Calculate mean amplitude for each window
-    xAmp = repmat(w_originalAmplitude,[1 windowSize]); 
-    xSignal = signalProfile(allWindowIndex);                               %Arrange Signals into windows
-    xSignal = (xSignal ./ xAmp)';                                                   %% Step iii -> iv       
-    dSignal = detrend(xSignal);                                                     %% Step iv -> v       
-    w_detrendedNormalizedFluctuations = std(dSignal,1)';                            %% Step v -> vi       
-    EI(i_channel)  = 1-corr(w_detrendedNormalizedFluctuations,w_originalAmplitude); %% Step vi -> vii
+    signalProfile = cumsum(originalAmplitude - mean(originalAmplitude));            % Step ii -> iii
+    w_originalAmplitude = mean(originalAmplitude(allWindowIndex),2);                % Calculate mean amplitude for each window
+    xAmp = repmat(w_originalAmplitude,[1 windowSize]);
+    xSignal = signalProfile(allWindowIndex);                                        % Arrange Signals into windows
+    xSignal = (xSignal ./ xAmp)';                                                   % Step iii -> iv
+    dSignal = detrend(xSignal);                                                     % Step iv -> v
+    w_detrendedNormalizedFluctuations = std(dSignal,1)';                            % Step v -> vi
+    EI(i_channel)  = 1-corr(w_detrendedNormalizedFluctuations,w_originalAmplitude); % Step vi -> vii
     wAmp(i_channel,:) = w_originalAmplitude;
     wDNF(i_channel,:) = w_detrendedNormalizedFluctuations;
 end
