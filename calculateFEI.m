@@ -19,9 +19,10 @@ function [EI, wAmp, wDNF] = calculateFEI(Signal, windowSize, windowOverlap)
 % windowSize:    in samples
 % windowOverlap: is fraction of overlap between windows (0-1)
 
-%% Example: [EI, wAmp, wDNF] = calculateFEI(randn(100000,1), 5000, 0.8)
+%% Example:
+% [EI, wAmp, wDNF] = calculateFEI(randn(100000,1), 5000, 0.8)
 % Will calculate fEI on the single channel white noise signal with length 100000
-% using a window size of 5000, and 80% overlap between each window 
+% using a window size of 5000 samples, and 80% overlap between each window
 
 lengthSignal = size(Signal,1);
 numChannels = size(Signal,2);
